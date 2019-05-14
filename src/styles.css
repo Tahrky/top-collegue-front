@@ -1,1 +1,159 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+:root {
+    --lightBlue: #51bbfe;
+    --blue: #0267c1;  
+    --darkBlue: #2d3754;
+    --darkViolet: #1a1423;
+    --violet: #3D315B ;
+    --pink: #f196b5;
+    --darkPink: #ba6e87;
+    --red: #913633;
+    --beige: #e39774;
+    --green: #4c9f70;
+    --grey: #6E7271;
+    --darkGrey: #312f2f;
+    --black: #07070a;
+}
+
+/*elements HTML*/
+input[type="submit"], input[type="button"] {
+    background: var(--lightBlue);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+    justify-content: center !important;
+    margin: 2px 5px;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover  {
+    background: var(--blue);
+    cursor: pointer;
+}
+
+label {
+    font-weight: bold;
+}
+
+h1 {
+    color: white;
+}
+
+h2 {
+    color: white;
+}
+
+html {
+    background-color: var(--darkGrey);
+    color: white;
+}
+
+header {
+    background-color: var(--darkGrey);
+    color: white;
+}
+
+nav {
+    background-color: var(--darkGrey);
+    color: white;
+}
+
+main {
+    background-color: var(--darkGrey);
+    color: white;
+}
+
+footer {
+    background-color: var(--darkGrey);
+    color: white;
+}
+
+app-root {
+    background-color: var(--darkGrey);
+}
+
+/*classes*/
+.container-fluid {
+    background-color: var(--darkGrey);
+}
+
+.link {
+    font-size: 1.1rem;
+    color: var(--lightBlue) !important;
+    text-align: center;
+}
+
+
+.active-link {
+    background-color: var(--grey);
+    color: white;
+}
+
+.link:hover {
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.menu {
+    border-color: white;
+    border-width: 1px;
+    border-radius: 2px;
+    border-style: solid;
+    font-size: 1.2em;
+}
+
+.cartel {
+    background-color: var(--grey);
+    color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    margin: 5px 0px;
+}
+
+.align-small {
+    text-align: center;
+}
+
+.error {
+    background-color: var(--red);
+    font-size: 1.2em;
+    border-radius: 8px;
+}
+
+.success {
+    background-color: var(--green);
+    border-radius: 8px;
+}
+
+.login {
+    max-height: 50px !important;
+    max-width: 80px !important;
+}
+
+.login:hover {
+    cursor: pointer;
+}
+
+/* Responsive modification with Bootstrap */
+@media (max-width: 991.98px) { 
+    .entete-cartel {
+        background-color: var(--darkBlue);
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-radius: 8px;
+    }
+}
+
+@media (min-width: 992px) { 
+
+    .align-small {
+        text-align: left;
+    }
+
+    .link {
+        text-align: left;
+    }
+}

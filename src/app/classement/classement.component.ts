@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthentificationService } from '../services/authentification.service';
+import { CollegueEmailNomPrenomsPhotoURLVote } from '../models/CollegueEmailNomPrenomsPhotoURLVote';
 
 @Component({
   selector: 'app-classement',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClassementComponent implements OnInit {
 
-  constructor() { }
+  collegues:CollegueEmailNomPrenomsPhotoURLVote [];
+
+  constructor(private _serviceAuthentification:AuthentificationService) { }
 
   ngOnInit() {
+    this._serviceAuthentification.getClassement ().subscribe (col => this.collegues = col);
   }
 
 }

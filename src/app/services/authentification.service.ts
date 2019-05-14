@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UtilisateurMailMotDePasse } from '../models/UtilisateurMailMotDePasse';
 import { CollegueEmailNomPrenomsPhotoURLRoles } from '../models/CollegueEmailNomPrenomsPhotoURLRoles';
+import { CollegueEmailNomPrenomsPhotoURLVote } from '../models/CollegueEmailNomPrenomsPhotoURLVote';
 
 const URL_BACKEND = environment.backendUrl;
 
@@ -49,4 +50,8 @@ export class AuthentificationService {
     getCollegues () {
       return this._serveur.get<CollegueEmailNomPrenomsPhotoURLRoles []> (`${URL_BACKEND}collegues`, {withCredentials: true});
     }  
+
+    getClassement () {
+      return this._serveur.get<CollegueEmailNomPrenomsPhotoURLVote []> (`${URL_BACKEND}classement`, {withCredentials: true});
+    }
 }
