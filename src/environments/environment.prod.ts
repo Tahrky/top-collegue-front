@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  backendUrl: "https://tahrky.github.io/top-collegues-front/"
+    production: true,
+    backendUrl: "https://tahrky.github.io/collegues-front/"
 };

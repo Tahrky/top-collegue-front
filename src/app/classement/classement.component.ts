@@ -3,18 +3,18 @@ import { AuthentificationService } from '../services/authentification.service';
 import { CollegueEmailNomPrenomsPhotoURLVote } from '../models/CollegueEmailNomPrenomsPhotoURLVote';
 
 @Component({
-  selector: 'app-classement',
-  templateUrl: './classement.component.html',
-  styleUrls: ['./classement.component.css']
+    selector: 'app-classement',
+    templateUrl: './classement.component.html',
+    styleUrls: ['./classement.component.css']
 })
 export class ClassementComponent implements OnInit {
 
-  collegues:CollegueEmailNomPrenomsPhotoURLVote [];
+    collegues: CollegueEmailNomPrenomsPhotoURLVote[];
 
-  constructor(private _serviceAuthentification:AuthentificationService) { }
+    constructor(private _serviceAuthentification: AuthentificationService) { }
 
-  ngOnInit() {
-    this._serviceAuthentification.getClassement ().subscribe (col => this.collegues = col);
-  }
+    ngOnInit() {
+        this._serviceAuthentification.getClassement().subscribe(col => this.collegues = col);
+    }
 
 }
