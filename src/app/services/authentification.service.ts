@@ -40,7 +40,6 @@ export class AuthentificationService {
         return this._serveur.post<CollegueEmailNomPrenomsPhotoURLRoles>(`${URL_BACKEND}auth`, user, { withCredentials: true }).pipe(tap(collegue => {
             this.subject.next(collegue);
             this.subjectBoolean.next(true);
-            console.log("coucou1");
         }));
     }
 
@@ -48,7 +47,6 @@ export class AuthentificationService {
         return this._serveur.post<boolean>(`${URL_BACKEND}logout`, null, { withCredentials: true }).pipe(tap(() => {
             this.subjectBoolean.next(false);
             this.subject.next(new CollegueEmailNomPrenomsPhotoURLRoles("", "", "", "", Array()));
-            console.log("coucou2");
         }));
     }
 
