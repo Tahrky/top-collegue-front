@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { UtilisateurMailMotDePasse } from '../models/UtilisateurMailMotDePasse';
 import { CollegueEmailNomPrenomsPhotoURLRoles } from '../models/CollegueEmailNomPrenomsPhotoURLRoles';
 import { CollegueEmailNomPrenomsPhotoURLVote } from '../models/CollegueEmailNomPrenomsPhotoURLVote';
+import { Subject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 const URL_BACKEND = environment.backendUrl;
 
@@ -20,10 +22,21 @@ const httpOptions = {
 export class AuthentificationService {
 
     collegueEnCours: CollegueEmailNomPrenomsPhotoURLRoles;
+    subject: Subject<CollegueEmailNomPrenomsPhotoURLRoles> = new Subject();
+    subjectBoolean: Subject<boolean> = new Subject();
+
     constructor(private _serveur: HttpClient) {
         this.getMe().subscribe(col => {
             this.collegueEnCours = col;
         }, err => console.log(err));
+    }
+
+    prendreAbonnement(): Observable<CollegueEmailNomPrenomsPhotoURLRoles> {
+        return this.subject.asObservable();
+    }
+
+    prendreAbonnementConnexion(): Observable<boolean> {
+        return this.subjectBoolean.asObservable();
     }
 
     authentification(user: UtilisateurMailMotDePasse) {
@@ -32,11 +45,18 @@ export class AuthentificationService {
     }
 
     deconnexion() {
-        return this._serveur.post<boolean>(`${URL_BACKEND}logout`, null, { withCredentials: true });
+        return this._serveur.post<boolean>(`${URL_BACKEND}logout`, null, { withCredentials: true }).pipe(tap(() => {
+            this.subjectBoolean.next(false);
+            this.subject.next(new CollegueEmailNomPrenomsPhotoURLRoles("", "", "", "", Array()));
+        }));
     }
 
     getMe() {
-        return this._serveur.get<CollegueEmailNomPrenomsPhotoURLRoles>(`${URL_BACKEND}me`, { withCredentials: true });
+        return this._serveur.get<CollegueEmailNomPrenomsPhotoURLRoles>((`${URL_BACKEND}me`), { withCredentials: true })
+            .pipe(tap(collegue => {
+                this.subject.next(collegue);
+                this.subjectBoolean.next(true);
+            }));
     }
 
     upvote(email: string) {

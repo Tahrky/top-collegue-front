@@ -1,11 +1,29 @@
-<header>
-
+<header class="text-center">
+    <div [ngSwitch]="estConnecte">
+        <div *ngSwitchCase="true" class="col-12">
+            <div class="row">
+                <h1 class="col-12 col-lg-10">Bienvenue {{collegueConnecte.nom | uppercase }}
+                    {{collegueConnecte.prenoms}}</h1>
+                <div class="col-12 col-lg-2">
+                    <img class="login" src="assets/disconnect.png" (click)="disconnect ()" />
+                </div>
+            </div>
+        </div>
+        <div *ngSwitchDefault class="col-12">
+            <div class="row">
+                <h1 class="col-12 col-lg-10">L'application des collègues</h1>
+                <a routerLink="/login" class="col-12 col-lg">
+                    <img class="login" src="assets/login.png" />
+                </a>
+            </div>
+        </div>
+    </div>
 </header>
 
 <nav class="row text-center">
-        <a class="col-12 col-md-6 menu" routerLink="/vote" routerLinkActive="active-link">Vote</a>
-        <a class="col-12 col-md-6 menu" routerLink="/classement" routerLinkActive="active-link">Classement</a>
-</nav>    
+    <a class="col-12 col-md-6 menu" routerLink="/vote" routerLinkActive="active-link">Vote</a>
+    <a class="col-12 col-md-6 menu" routerLink="/classement" routerLinkActive="active-link">Classement</a>
+</nav>
 
 <main>
     <router-outlet></router-outlet>
