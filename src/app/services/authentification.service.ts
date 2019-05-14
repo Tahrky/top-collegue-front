@@ -3,8 +3,6 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UtilisateurMailMotDePasse } from '../models/UtilisateurMailMotDePasse';
 import { CollegueMatriculeNomPrenomsRoles } from '../models/CollegueMatriculeNomPrenomsRoles';
-import { Subject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 const URL_BACKEND = environment.backendUrl;
 
@@ -21,7 +19,6 @@ const httpOptions = {
 export class AuthentificationService {
 
     collegueEnCours:CollegueMatriculeNomPrenomsRoles;
-
     constructor (private _serveur:HttpClient) {
       this.getMe ().subscribe (col => {
         this.collegueEnCours = col;
@@ -29,6 +26,7 @@ export class AuthentificationService {
     }
 
     authentification (user:UtilisateurMailMotDePasse) {
+      console.log (user.email + " " + user.motDePasse);
       return this._serveur.post<CollegueMatriculeNomPrenomsRoles> (`${URL_BACKEND}auth`, user, {withCredentials: true});
     }
 
@@ -37,6 +35,14 @@ export class AuthentificationService {
     }
     
     getMe () {
-      return this._serveur.get<CollegueMatriculeNomPrenomsRoles> ((`${URL_BACKEND}me`), {withCredentials: true});
+      return this._serveur.get<CollegueMatriculeNomPrenomsRoles> (`${URL_BACKEND}me`, {withCredentials: true});
+    }    
+
+    upvote (email:string) {
+      return this._serveur.patch<CollegueMatriculeNomPrenomsRoles> (`${URL_BACKEND}upvote`, email, {withCredentials: true});
+    }
+
+    downvote (email:string) {
+      return this._serveur.patch<CollegueMatriculeNomPrenomsRoles> (`${URL_BACKEND}downvote`, email, {withCredentials: true});
     }    
 }
