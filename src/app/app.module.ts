@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { VoteComponent } from './vote/vote.component';
+import { ClassementComponent } from './classement/classement.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    VoteComponent,
+    ClassementComponent
   ],
   imports: [
     BrowserModule,

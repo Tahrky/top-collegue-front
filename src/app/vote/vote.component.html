@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-6" *ngFor="let col of collegues">
+    <div class="row">
+        <div class="col-12">
+          <img class="img-fluid" src="{{col.photoUrl}}"/>
+        </div>
+        <div class="col-12">
+            {{col.nom}} {{col.prenoms}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <img (click)="upvote(col.email)" class="img-fluid" style="max-height: 50px;" src="https://s2.qwant.com/thumbr/0x380/f/3/848f6f679f43eeb1f0185a7af6b8c9bda66e9cd2c626ba7b745124b2212fe6/210_vote_like_up_upvote-512.png?u=https%3A%2F%2Fcdn3.iconfinder.com%2Fdata%2Ficons%2Fbasicolor-votting-awards%2F24%2F210_vote_like_up_upvote-512.png&q=0&b=1&p=0&a=1"/>
+        </div> 
+        <div class="col-6">
+            <img (click)="downvote(col.email)" class="img-fluid" style="max-height: 50px;" src="https://s1.qwant.com/thumbr/0x380/b/d/c015afab230efc23aaa812d6112a4a1d3000bf03153d35b7c06c7617b901a3/7-512.png?u=https%3A%2F%2Fcdn0.iconfinder.com%2Fdata%2Ficons%2Fuser-interface-vol-5-4%2F66%2F7-512.png&q=0&b=1&p=0&a=1"/>
+        </div>
+    </div>
+  </div>
+</div>
+
