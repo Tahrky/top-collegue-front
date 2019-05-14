@@ -9,7 +9,6 @@ import { AuthentificationService } from './services/authentification.service';
 })
 export class AppComponent {
     title = 'top-collegue-front';
-
     collegueConnecte: CollegueEmailNomPrenomsPhotoURLRoles;
     estConnecte: boolean;
 

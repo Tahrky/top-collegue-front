@@ -26,9 +26,6 @@ export class AuthentificationService {
     subjectBoolean: Subject<boolean> = new Subject();
 
     constructor(private _serveur: HttpClient) {
-        this.getMe().subscribe(col => {
-            this.collegueEnCours = col;
-        }, err => console.log(err));
     }
 
     prendreAbonnement(): Observable<CollegueEmailNomPrenomsPhotoURLRoles> {
@@ -40,23 +37,19 @@ export class AuthentificationService {
     }
 
     authentification(user: UtilisateurMailMotDePasse) {
-        console.log(user.email + " " + user.motDePasse);
-        return this._serveur.post<CollegueEmailNomPrenomsPhotoURLRoles>(`${URL_BACKEND}auth`, user, { withCredentials: true });
+        return this._serveur.post<CollegueEmailNomPrenomsPhotoURLRoles>(`${URL_BACKEND}auth`, user, { withCredentials: true }).pipe(tap(collegue => {
+            this.subject.next(collegue);
+            this.subjectBoolean.next(true);
+            console.log("coucou1");
+        }));
     }
 
     deconnexion() {
         return this._serveur.post<boolean>(`${URL_BACKEND}logout`, null, { withCredentials: true }).pipe(tap(() => {
             this.subjectBoolean.next(false);
             this.subject.next(new CollegueEmailNomPrenomsPhotoURLRoles("", "", "", "", Array()));
+            console.log("coucou2");
         }));
-    }
-
-    getMe() {
-        return this._serveur.get<CollegueEmailNomPrenomsPhotoURLRoles>((`${URL_BACKEND}me`), { withCredentials: true })
-            .pipe(tap(collegue => {
-                this.subject.next(collegue);
-                this.subjectBoolean.next(true);
-            }));
     }
 
     upvote(email: string) {
