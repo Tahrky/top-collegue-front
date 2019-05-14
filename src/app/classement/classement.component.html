@@ -1,15 +1,17 @@
 <div class="row">
     <div class="col-12" *ngFor="let col of collegues">
-      <div class="row">
-          <div class="col-2">
-            <p style="font-size: 10rem"> {{col.vote}} </p>
+      <div class="cartel">
+        <div class="row text-center">
+          <div class="col-12 col-md-2 align-self-center">
+            <p style="font-size: 4rem"> {{col.vote}} </p>
           </div>
-          <div class="col-6">
-            <img class="img-fluid" src="{{col.photoUrl}}"/>
+          <div class="col-12 col-md-6">
+            <img class="img-fluid" style="max-height: 300px;" src="{{col.photoUrl}}"/>
           </div>
-          <div class="col-4">
+          <div class="col-12 col-md-4 align-self-center">
               {{col.nom}} {{col.prenoms}}
           </div>
+        </div>
       </div>
     </div>
   </div>
