@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../services/authentification.service';
 import { CollegueEmailNomPrenomsPhotoURLRoles } from '../models/CollegueEmailNomPrenomsPhotoURLRoles';
 import { Note } from '../models/Note';
+import { timeout } from 'rxjs/operators';
 
 @Component({
     selector: 'app-vote',
@@ -11,6 +12,7 @@ import { Note } from '../models/Note';
 export class VoteComponent implements OnInit {
 
     collegues: CollegueEmailNomPrenomsPhotoURLRoles[];
+    messageVote:string = "";
 
     constructor(private _serviceAuthentification: AuthentificationService) { }
 
@@ -20,12 +22,18 @@ export class VoteComponent implements OnInit {
 
     upvote(email: string) {
         let note = new Note (1, email);
-        this._serviceAuthentification.vote(note).subscribe();
+        this._serviceAuthentification.vote(note).subscribe(() => {
+            this.messageVote="vous avez voté !";
+            setTimeout (() => {this.messageVote = ""}, 2000);
+        });
     }
 
     downvote(email: string) {
         let note = new Note (2, email);
-        this._serviceAuthentification.vote(note).subscribe();
+        this._serviceAuthentification.vote(note).subscribe(() => {
+            this.messageVote="vous avez voté !";
+            setTimeout (() => {this.messageVote = ""}, 2000);
+        });
     }
 
 }
