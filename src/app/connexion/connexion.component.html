@@ -1,10 +1,15 @@
-<form #formAuthentification="ngForm" (ngSubmit)="submit()">
-  <label>Email :</label> <br/>
-  <input type="email" [(ngModel)]="utilisateur.email" #email="ngModel" name="email" required/> <br/>
-  <label>Mot de passe :</label> <br/>
-  <input type="password" [(ngModel)]="utilisateur.motDePasse" #motDePasse="ngModel" name="motDePasse" required/> <br/>
-  <label>URL de la photo :</label> <br/>
-  <input type="text" [(ngModel)]="utilisateur.photoUrl" #photoUrl="ngModel" name="photoUrl"/> <br/>
-  <input type="submit" value="Envoyez"/> <br/> 
-</form>
+<div class="row text-center">
+    <div class="col-12">
+        <form class="row" #formAuthentification="ngForm" (ngSubmit)="submit()">
+            <label class="col-12">Email :</label> <br/>
+            <input class="col-12" type="email" [(ngModel)]="utilisateur.email" #email="ngModel" name="email" required/> <br/>
+            <label class="col-12">Mot de passe :</label> <br/>
+            <input class="col-12" type="password" [(ngModel)]="utilisateur.motDePasse" #motDePasse="ngModel" name="motDePasse" required/> <br/>
+            <label class="col-12">URL de la photo :</label> <br/>
+            <input class="col-12" type="text" [(ngModel)]="utilisateur.photoUrl" #photoUrl="ngModel" name="photoUrl"/> <br/>
+            <input class="col-12" type="submit" value="Envoyez"/> <br/> 
+        </form> 
+    </div>
+</div>
+
   
