@@ -3,9 +3,10 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UtilisateurMailMotDePasse } from '../models/UtilisateurMailMotDePasse';
 import { CollegueEmailNomPrenomsPhotoURLRoles } from '../models/CollegueEmailNomPrenomsPhotoURLRoles';
-import { CollegueEmailNomPrenomsPhotoURLVote } from '../models/CollegueEmailNomPrenomsPhotoURLVote';
 import { Subject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Note } from '../models/Note';
+import { CollegueNomPrenomsPhotoURLVote } from '../models/CollegueNomPrenomsPhotoURLVote';
 
 const URL_BACKEND = environment.backendUrl;
 
@@ -50,12 +51,8 @@ export class AuthentificationService {
         }));
     }
 
-    upvote(email: string) {
-        return this._serveur.patch<void>(`${URL_BACKEND}upvote`, email, { withCredentials: true });
-    }
-
-    downvote(email: string) {
-        return this._serveur.patch<void>(`${URL_BACKEND}downvote`, email, { withCredentials: true });
+    vote(note: Note) {
+        return this._serveur.post<void>(`${URL_BACKEND}vote`, note, { withCredentials: true });
     }
 
     getCollegues() {
@@ -63,6 +60,6 @@ export class AuthentificationService {
     }
 
     getClassement() {
-        return this._serveur.get<CollegueEmailNomPrenomsPhotoURLVote[]>(`${URL_BACKEND}classement`, { withCredentials: true });
+        return this._serveur.get<CollegueNomPrenomsPhotoURLVote[]>(`${URL_BACKEND}classement`, { withCredentials: true });
     }
 }

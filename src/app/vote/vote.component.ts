@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../services/authentification.service';
 import { CollegueEmailNomPrenomsPhotoURLRoles } from '../models/CollegueEmailNomPrenomsPhotoURLRoles';
+import { Note } from '../models/Note';
 
 @Component({
     selector: 'app-vote',
@@ -18,11 +19,13 @@ export class VoteComponent implements OnInit {
     }
 
     upvote(email: string) {
-        this._serviceAuthentification.upvote(email).subscribe();
+        let note = new Note (1, email);
+        this._serviceAuthentification.vote(note).subscribe();
     }
 
     downvote(email: string) {
-        this._serviceAuthentification.downvote(email).subscribe();
+        let note = new Note (2, email);
+        this._serviceAuthentification.vote(note).subscribe();
     }
 
 }

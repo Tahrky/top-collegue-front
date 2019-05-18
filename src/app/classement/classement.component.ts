@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../services/authentification.service';
-import { CollegueEmailNomPrenomsPhotoURLVote } from '../models/CollegueEmailNomPrenomsPhotoURLVote';
+import { CollegueNomPrenomsPhotoURLVote } from '../models/CollegueNomPrenomsPhotoURLVote';
 
 @Component({
     selector: 'app-classement',
@@ -9,7 +9,7 @@ import { CollegueEmailNomPrenomsPhotoURLVote } from '../models/CollegueEmailNomP
 })
 export class ClassementComponent implements OnInit {
 
-    collegues: CollegueEmailNomPrenomsPhotoURLVote[];
+    collegues: CollegueNomPrenomsPhotoURLVote[];
 
     constructor(private _serviceAuthentification: AuthentificationService) { }
 
